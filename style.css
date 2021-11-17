@@ -12,10 +12,15 @@ body{
     min-height: 500px;
 }
 table{
-    
+
 }
 h1{
     font-size: 45px;
+    font-style: italic;
+}
+h2,h1,h3{
+    margin: 0;
+    padding: 0;
 }
 table tr{
 
@@ -46,4 +51,43 @@ button{
 button:hover{
     color: red;
     background-color: white;
+}
+div{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: 0;
+}
+.score{
+    position: fixed;
+    bottom: 20px;
+    right: 10px;
+    color: white;
+    font-size: 14px;
+    text-align: center;
+}
+.score h3{
+    margin: 0;
+    padding: 0;
+}
+.score__box{
+    display: flex;
+}
+
+.score__box .players{
+    margin: 0px 5px;
+    font-weight: 900;
+}
+.score__box .player1{
+    color: red;
+}
+.score__box .player2{
+    color: blue;
+}
+.score__box .players__score{
+    display: block;
+    margin: 0;
+    padding: 0;
+   height: 10px;
+
 }

@@ -6,6 +6,26 @@ let XTime =true
 let XPlayer=[]
 let OPlayer=[]
 
+const player1Score=document.getElementsByClassName('player1__score')[0]
+const player2Score=document.getElementsByClassName('player2__score')[0]
+
+const turn = document.getElementById('turn')
+
+turn.addEventListener('onload',changeOfturn(XTime))
+
+function changeOfturn(XTime){
+    if(XTime){
+        turn.innerText='X'
+        turn.style.color='red'
+        return
+    }else{
+        turn.innerText='O'
+        turn.style.color='blue'
+        return
+    }  
+    
+}
+
 const winArr=[
     [1,2,3],
     [4,5,6],
@@ -23,22 +43,32 @@ for(let i=0; i<cels.length;i++){
             if(XTime){
                 if(e.target.innerText==''){
                     cels[i].innerText='x'
+                    cels[i].style.color='red'
                     XPlayer.push(Number(e.target.id) ) 
                     XTime=false 
+                    changeOfturn(XTime)
                     if( playerWin(XPlayer) ) {
-                        window.alert( 'O x Ganhou!!' )
+                        window.alert( 'x Ganhou!!' )
                         resetar()
+                        player2Score.innerText+='I'
+                        XTime=false 
+                        changeOfturn(XTime)
                         return
                     }
                 }
             }else{
                 if(e.target.innerText==''){
                     cels[i].innerText='o'
+                    cels[i].style.color='blue'
                     OPlayer.push(Number(e.target.id) )
                     XTime=true 
+                    changeOfturn(XTime)
                     if( playerWin(OPlayer) ) {
-                        window.alert( 'O o Ganhou!!' )
+                        window.alert( 'o Ganhou!!' )
                         resetar()
+                        player1Score.innerText+='I'
+                        XTime=false 
+                        changeOfturn(XTime)
                         return 
                     }
                 }
@@ -58,23 +88,13 @@ function resetar(){
 }
 
 
-table.addEventListener('click',(e)=>{
-    console.log(e.currentTarget.id )
-})
-
-
-
 /* Verificando se houve vitória, retorna true ou false */
 function playerWin(arr){
     let soma=0
     for(let i=0;i<winArr.length;i++){
         for(let j=0; j<3;j++){
             if(arr.includes( winArr[i][j] ) ) soma++
-            console.log(arr)
-            console.log(winArr[i][j])
         }
-
-        console.log(soma)
         if(soma==3) return true
         soma=0
     }
