@@ -54,7 +54,7 @@ for(let i=0; i<cels.length;i++){
                         window.alert( 'x Ganhou!!' )
                         resetar()
                         player2Score.innerText+='I'
-                        XTime=true 
+                         
                         changeOfturn(XTime)
                         return
                     }
@@ -70,7 +70,7 @@ for(let i=0; i<cels.length;i++){
                         window.alert( 'o Ganhou!!' )
                         resetar()
                         player1Score.innerText+='I'
-                        XTime=false 
+                        
                         changeOfturn(XTime)
                         return 
                     }
