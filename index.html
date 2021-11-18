@@ -8,40 +8,47 @@
     <title>Jogo da Velha</title>
 </head>
 <body>
-    <h1>Jogo da Velha</h1>
-    <h2>Vez do <span class="turn" id="turn" ></span> </h2>
-    <table id="mesa" class="x">
-        <tr>
-            <td id="1"></td>
-            <td id="2"></td>
-            <td id="3"></td>
-        </tr>
-        <tr>
-            <td id="4"></td>
-            <td id="5"></td>
-            <td id="6"></td>
-        </tr>
-        <tr>
-            <td id="7"></td>
-            <td id="8"></td>
-            <td id="9"></td>
-        </tr>
-    </table>
-    <button>Reiniciar</button>
-    <div class="score">
-        <h3>Score</h3>
-        <div class="score__box">
-            <div class="players player2">
-                O Player
-                <span class="player1__score players__score"></span>
-            </div>
-            <div class="players player1">
-                X Player
-                <span class="player2__score players__score"></span>
+    <div class="fundo">
+        <h1>Jogo da Velha</h1>
+        <h2>Vez do <span class="turn" id="turn" ></span> </h2>
+        <table id="mesa" class="x">
+            <tr>
+                <td id="1"></td>
+                <td id="2"></td>
+                <td id="3"></td>
+            </tr>
+            <tr>
+                <td id="4"></td>
+                <td id="5"></td>
+                <td id="6"></td>
+            </tr>
+            <tr>
+                <td id="7"></td>
+                <td id="8"></td>
+                <td id="9"></td>
+            </tr>
+        </table>
+        <button>Reiniciar</button>
+
+        <div class="score">
+            <h3>Score</h3>
+            <div class="score__box">
+                <div class="players player2">
+                    O Player
+                    <span class="player1__score players__score"></span>
+                </div>
+                <div class="players player1">
+                    X Player
+                    <span class="player2__score players__score"></span>
+                </div>
             </div>
         </div>
-    </div>
 
+        <div class="drawCount">
+            <h4>Empates</h4>
+            <p id="draw">0</p>
+        </div>
+    </div>
     <script src='index.js'></script>
 </body>
 </html>

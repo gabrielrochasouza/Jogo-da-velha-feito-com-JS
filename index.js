@@ -11,6 +11,9 @@ const player2Score=document.getElementsByClassName('player2__score')[0]
 
 const turn = document.getElementById('turn')
 
+let draws=0
+let drawsCounting=document.getElementById('draw')
+
 turn.addEventListener('onload',changeOfturn(XTime))
 
 function changeOfturn(XTime){
@@ -72,7 +75,13 @@ for(let i=0; i<cels.length;i++){
                         return 
                     }
                 }
-            }    
+            } 
+            if( (XPlayer.reduce( (elem,soma)=>elem+soma,0 )+ OPlayer.reduce( (elem,soma)=>elem+soma,0 )) == 45 ){
+                window.alert('Empate, reiniciando a partida!')
+                draws++
+                drawsCounting.innerText=`${draws}`
+                resetar()
+            }   
         } )
     
 }
