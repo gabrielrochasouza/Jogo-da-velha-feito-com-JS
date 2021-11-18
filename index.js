@@ -54,7 +54,7 @@ for(let i=0; i<cels.length;i++){
                         window.alert( 'x Ganhou!!' )
                         resetar()
                         player2Score.innerText+='I'
-                        XTime=false 
+                        XTime=true 
                         changeOfturn(XTime)
                         return
                     }
