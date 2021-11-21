@@ -61,13 +61,14 @@ for(let i=0; i<cels.length;i++){
                             player2Score.innerText=player2ScoreNum                     
                             changeOfturn(XTime)
                         }, 100);
+                        
 
                     }else{
                         empate(XPlayer, OPlayer)
                         XTime=true
                     }
-                }
-            }
+                
+            
             setTimeout(() => {
                 
                 let escolhaComputador= escolhaComp(XPlayer,OPlayer)
@@ -92,7 +93,10 @@ for(let i=0; i<cels.length;i++){
                 }
 
             }, 200);
-
+        
+        }
+        
+        }
             
 
            /* parte do código para jogar com adversário manual 
@@ -221,6 +225,7 @@ function computadorRandom(XPlayer){
             XPlayer=[]
             OPlayer=[]
         }
+        
     }
     return numRandomico
 }
