@@ -1,16 +1,4 @@
 body{
-    /*
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #262626;
-    color: white;
-    flex-direction: column;
-    font-family: Arial, Helvetica, sans-serif;
-    margin: 0;
-    padding: 0;
-    min-height: 500px;*/
     color: white;
     margin: 0;
     padding: 0;
@@ -32,9 +20,7 @@ body{
     padding: 0;
     min-height: 500px;
 }
-table{
 
-}
 h1{
     font-size: 45px;
     font-style: italic;
@@ -44,7 +30,7 @@ h2,h1,h3,h4{
     padding: 0;
 }
 table tr{
-
+    transition: all 50ms;
 }
 table tr td{
     width: 100px;
@@ -55,11 +41,14 @@ table tr td{
     text-align: center;
     font-size: 60px;
     cursor: pointer;
+    transition: all 50ms;
 }
 table tr td:hover{
     background-color: rgba(255, 31, 50, 0.096);
     color: red;
+    transition: all 50ms;
 }
+
 button{
     border: 0;
     outline: 0;
@@ -97,6 +86,7 @@ div{
 
 .score__box .players{
     margin: 0px 5px;
+    width: 40px;
     font-weight: 900;
 }
 .score__box .player1{
@@ -109,7 +99,7 @@ div{
     display: block;
     margin: 0;
     padding: 0;
-   height: 10px;
+    height: 10px;
 
 }
 .drawCount{
@@ -126,6 +116,20 @@ div{
 .drawCount h4{
     padding:0 5px;
 }
-.drawCount .draw{
-    
+
+@media (max-width:450px){
+    table tr td{
+        width: 80px;
+        height: 80px;
+    }
+    h1{
+        font-size: 32px;
+    }
+    h2{
+        font-size: 18px;
+    }
+    button{
+        padding: 5px;
+        font-size: 15px;
+    }
 }

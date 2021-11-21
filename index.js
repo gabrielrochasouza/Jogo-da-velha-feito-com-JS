@@ -41,25 +41,58 @@ const winArr=[
 ]
 
 for(let i=0; i<cels.length;i++){
-    
         cels[i].addEventListener('click',(e)=>{
             if(XTime){
                 if(e.target.innerText==''){
                     cels[i].innerText='x'
                     cels[i].style.color='red'
-                    XPlayer.push(Number(e.target.id) ) 
+                    XPlayer.push(Number(e.target.id) ) //array do x
                     XTime=false 
                     changeOfturn(XTime)
+                    
                     if( playerWin(XPlayer) ) {
-                        window.alert( 'x Ganhou!!' )
-                        resetar()
-                        player2Score.innerText+='I'
-                         
-                        changeOfturn(XTime)
-                        return
+
+                        setTimeout(() => {
+                            window.alert( 'x Ganhou!!' )
+                            resetar()
+                            player2Score.innerText+='I'                     
+                            changeOfturn(XTime)
+                        }, 100);
+
+                    }else{
+                        empate(XPlayer, OPlayer)
+                        XTime=true
                     }
                 }
-            }else{
+            }
+            setTimeout(() => {
+                
+                let escolhaComputador= escolhaComp(XPlayer,OPlayer)
+                OPlayer.push(escolhaComputador)
+                
+                cels[escolhaComputador-1].innerText='o'
+                cels[escolhaComputador-1].style.color='blue'
+                
+                XTime=true 
+                changeOfturn(XTime) 
+            
+                if( playerWin(OPlayer) ) {
+                    setTimeout(() => {
+                        window.alert( 'o Ganhou!!' )
+                        resetar()
+                        player1Score.innerText+='I'
+                    }, 100);
+                }else{
+                    empate(XPlayer, OPlayer)
+                    XTime=true 
+                }
+
+            }, 200);
+
+            
+
+           /* parte do código para jogar com adversário manual 
+           else{
                 if(e.target.innerText==''){
                     cels[i].innerText='o'
                     cels[i].style.color='blue'
@@ -67,25 +100,31 @@ for(let i=0; i<cels.length;i++){
                     XTime=true 
                     changeOfturn(XTime)
                     if( playerWin(OPlayer) ) {
-                        window.alert( 'o Ganhou!!' )
-                        resetar()
+                        setTimeout(()=>{
+                            window.alert( 'o Ganhou!!' )
+                            resetar()
+                        }, 200);                        
                         player1Score.innerText+='I'
-                        
                         changeOfturn(XTime)
                         return 
                     }
                 }
-            } 
-            if( (XPlayer.reduce( (elem,soma)=>elem+soma,0 )+ OPlayer.reduce( (elem,soma)=>elem+soma,0 )) == 45 ){
-                window.alert('Empate, reiniciando a partida!')
-                draws++
-                drawsCounting.innerText=`${draws}`
-                resetar()
-            }   
+            } */  
         } )
     
 }
 reset.addEventListener('click',resetar )
+
+function empate(XPlayer,OPlayer){
+    if( (XPlayer.reduce( (elem,soma)=>elem+soma,0 )+ OPlayer.reduce( (elem,soma)=>elem+soma,0 )) == 45 ){
+        setTimeout(()=>{
+            window.alert( 'Empate, reiniciando a partida!' )
+            resetar()
+        }, 200);
+        draws++
+        drawsCounting.innerText=`${draws}`
+    }
+}
 
 function resetar(){
     for(let i=0; i<cels.length;i++){
@@ -108,4 +147,72 @@ function playerWin(arr){
         soma=0
     }
    return false
+}
+
+/**IA Escolhe qual celula preencher */
+function escolhaComp(XPlayer,OPlayer){
+    let verificarEmpate=  XPlayer.reduce( (elem,soma)=>elem+soma,0 )+ OPlayer.reduce( (elem,soma)=>elem+soma,0 )== 45 
+    if(verificarEmpate==false){
+        if(compVerifyOWin(XPlayer,OPlayer)!=false ){
+            console.log('1° if')
+            
+            return compVerifyOWin(XPlayer,OPlayer)
+        }else if(compVerifyXWin(XPlayer,OPlayer)!=false ){
+            console.log('2° if')
+            return compVerifyXWin(XPlayer,OPlayer)
+        }else{
+            console.log('3° if')
+            return computadorRandom(XPlayer)
+        }
+    }
+}
+
+
+function compVerifyXWin(XPlayer,OPlayer){
+    let soma=0
+    for(let i=0;i<winArr.length;i++){
+        for(let j=0; j<3;j++){
+            if(XPlayer.includes( winArr[i][j] ) ) soma++
+        }
+        if(soma==2){
+            for(let k=0; k<3 ;k++){
+                if( !OPlayer.includes(winArr[i][k]) && !XPlayer.includes(winArr[i][k]) ){
+                    return winArr[i][k]
+                }
+            }   
+        }
+        soma=0
+    }
+    return false
+}
+
+
+function compVerifyOWin(XPlayer,OPlayer){
+    let soma=0
+    for(let i=0;i<winArr.length;i++){
+        for(let j=0; j<3;j++){
+            if(OPlayer.includes( winArr[i][j] ) ) soma++
+        }
+        if(soma==2){
+            for(let k=0; k<3 ;k++){
+                if( !(OPlayer.includes(winArr[i][k])) && !(XPlayer.includes(winArr[i][k])) ){
+                    return winArr[i][k]
+                }
+            }  
+        }
+        soma=0 
+    }
+    return false
+}
+
+function computadorRandom(XPlayer){
+    let numRandomico = Math.floor( Math.random()*9+1 ) 
+    while(XPlayer.includes(numRandomico) || OPlayer.includes(numRandomico)){
+        numRandomico = Math.floor( Math.random()*9+1 )
+        if((XPlayer.reduce( (elem,soma)=>elem+soma,0 )+ OPlayer.reduce( (elem,soma)=>elem+soma,0 )) == 45){
+            XPlayer=[]
+            OPlayer=[]
+        }
+    }
+    return numRandomico
 }
