@@ -8,6 +8,8 @@ let OPlayer=[]
 
 const player1Score=document.getElementsByClassName('player1__score')[0]
 const player2Score=document.getElementsByClassName('player2__score')[0]
+let player1ScoreNum=0
+let player2ScoreNum=0
 
 const turn = document.getElementById('turn')
 
@@ -55,7 +57,8 @@ for(let i=0; i<cels.length;i++){
                         setTimeout(() => {
                             window.alert( 'x Ganhou!!' )
                             resetar()
-                            player2Score.innerText+='I'                     
+                            player2ScoreNum++
+                            player2Score.innerText=player2ScoreNum                     
                             changeOfturn(XTime)
                         }, 100);
 
@@ -80,7 +83,8 @@ for(let i=0; i<cels.length;i++){
                     setTimeout(() => {
                         window.alert( 'o Ganhou!!' )
                         resetar()
-                        player1Score.innerText+='I'
+                        player1ScoreNum++
+                        player1Score.innerText=player1ScoreNum  
                     }, 100);
                 }else{
                     empate(XPlayer, OPlayer)
@@ -160,8 +164,12 @@ function escolhaComp(XPlayer,OPlayer){
         }else if(compVerifyXWin(XPlayer,OPlayer)!=false ){
             console.log('2° if')
             return compVerifyXWin(XPlayer,OPlayer)
-        }else{
+        }else if(XPlayer==[5]){
             console.log('3° if')
+            const pontas=[1,3,7,9]
+            return pontas[ Math.floor( Math.random()*4 ) ]
+        }else{
+            console.log('4° if')
             return computadorRandom(XPlayer)
         }
     }
