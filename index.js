@@ -168,7 +168,7 @@ function escolhaComp(XPlayer,OPlayer){
         }else if(compVerifyXWin(XPlayer,OPlayer)!=false ){
             console.log('2° if')
             return compVerifyXWin(XPlayer,OPlayer)
-        }else if(XPlayer.length==1 && XPlayer[0]==5){
+        }else if(XPlayer.length==1 && XPlayer[0]==5 && OPlayer.length==0){
             console.log('3° if')
             const pontas=[1,3,7,9]
             return pontas[ Math.floor( Math.random()*4 ) ]
